@@ -1,7 +1,7 @@
-package com.borikov.laba1.main;
+package com.borikov.laba1_3.main;
 
-import com.borikov.laba1.entity.Product;
-import com.borikov.laba1.print.InfoWriter;
+import com.borikov.laba1_3.entity.Product;
+import com.borikov.laba1_3.print.InfoWriter;
 
 public class ProductMain {
     public static void main(String[] args) {

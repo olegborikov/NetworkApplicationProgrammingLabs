@@ -1,6 +1,6 @@
-package com.borikov.laba2.service;
+package com.borikov.laba2_1.service;
 
-import com.borikov.laba2.entity.Product;
+import com.borikov.laba2_1.entity.Product;
 
 public class ProductService {
     public static double calculateGeneralPrice(Product[] products) {

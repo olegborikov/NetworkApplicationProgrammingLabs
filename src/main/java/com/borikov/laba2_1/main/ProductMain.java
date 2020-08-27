@@ -1,7 +1,7 @@
-package com.borikov.laba2.main;
+package com.borikov.laba2_1.main;
 
-import com.borikov.laba2.entity.Product;
-import com.borikov.laba2.service.ProductService;
+import com.borikov.laba2_1.entity.Product;
+import com.borikov.laba2_1.service.ProductService;
 
 public class ProductMain {
     public static void main(String[] args) {

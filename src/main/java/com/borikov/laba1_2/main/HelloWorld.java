@@ -1,4 +1,4 @@
-package com.borikov.laba1.main;
+package com.borikov.laba1_2.main;
 
 public class HelloWorld {
     public static void main(String[] args) {

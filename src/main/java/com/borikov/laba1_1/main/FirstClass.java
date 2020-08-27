@@ -1,4 +1,4 @@
-package com.borikov.laba1.main;
+package com.borikov.laba1_1.main;
 
 public class FirstClass {
     public static void main(String[] args) {

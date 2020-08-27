@@ -1,6 +1,6 @@
-package com.borikov.laba1.print;
+package com.borikov.laba1_3.print;
 
-import com.borikov.laba1.entity.Product;
+import com.borikov.laba1_3.entity.Product;
 
 public class InfoWriter {
     public void printName(Product product) {

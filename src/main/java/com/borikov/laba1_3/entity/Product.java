@@ -1,17 +1,11 @@
-package com.borikov.laba2.entity;
+package com.borikov.laba1_3.entity;
 
 public class Product {
     private String name;
     private double price;
     private boolean isStock;
 
-    public Product(String name) {
-        this.name = name;
-    }
-
-    public Product(String name, double price) {
-        this.name = name;
-        this.price = price;
+    public Product() {
     }
 
     public Product(String name, double price, boolean isStock) {
@@ -44,7 +38,15 @@ public class Product {
         isStock = stock;
     }
 
-    public void printInfo() {
-        System.out.printf("Name: %s%nPrice: %.2f%nIn stock: %b%n", name, price, isStock);
+    public void printName() {
+        System.out.println("Name: " + name);
+    }
+
+    public void printPrice() {
+        System.out.println("Price: " + price);
+    }
+
+    public void printStock() {
+        System.out.println("In stock: " + isStock);
     }
 }
