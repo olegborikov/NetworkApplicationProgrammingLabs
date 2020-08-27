@@ -47,6 +47,6 @@ public class Product {
     }
 
     public void printStock() {
-        System.out.println("Product in stock: " + isStock);
+        System.out.println("In stock: " + isStock);
     }
 }

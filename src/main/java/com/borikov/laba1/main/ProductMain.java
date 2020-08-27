@@ -1,7 +1,7 @@
 package com.borikov.laba1.main;
 
 import com.borikov.laba1.entity.Product;
-import com.borikov.laba1.print.WriterInfo;
+import com.borikov.laba1.print.InfoWriter;
 
 public class ProductMain {
     public static void main(String[] args) {
@@ -13,9 +13,9 @@ public class ProductMain {
         product1.setName("Mouse");
         product1.setPrice(10);
         product1.setStock(false);
-        WriterInfo writerInfo = new WriterInfo();
-        writerInfo.printName(product1);
-        writerInfo.printPrice(product1);
-        writerInfo.printStock(product1);
+        InfoWriter infoWriter = new InfoWriter();
+        infoWriter.printName(product1);
+        infoWriter.printPrice(product1);
+        infoWriter.printStock(product1);
     }
 }

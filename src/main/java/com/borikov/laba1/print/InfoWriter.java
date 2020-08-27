@@ -2,7 +2,7 @@ package com.borikov.laba1.print;
 
 import com.borikov.laba1.entity.Product;
 
-public class WriterInfo {
+public class InfoWriter {
     public void printName(Product product) {
         product.printName();
     }
