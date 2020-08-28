@@ -52,10 +52,14 @@ public class MotherBoard extends ComputerComponent {
             return false;
         }
         MotherBoard that = (MotherBoard) o;
-        if (socket != null ? !socket.equals(that.socket) : that.socket != null) {
+        if (socket != null
+                ? !socket.equals(that.socket)
+                : that.socket != null) {
             return false;
         }
-        return memoryType != null ? memoryType.equals(that.memoryType) : that.memoryType == null;
+        return memoryType != null
+                ? memoryType.equals(that.memoryType)
+                : that.memoryType == null;
     }
 
     @Override

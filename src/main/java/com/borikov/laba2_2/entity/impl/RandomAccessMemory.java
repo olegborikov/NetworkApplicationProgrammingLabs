@@ -11,7 +11,8 @@ public class RandomAccessMemory extends ComputerComponent {
         type = "";
     }
 
-    public RandomAccessMemory(String name, String model, int cost, int price, int capacity, String type) {
+    public RandomAccessMemory(String name, String model,
+                              int cost, int price, int capacity, String type) {
         super(name, model, cost, price);
         this.capacity = capacity;
         this.type = type;

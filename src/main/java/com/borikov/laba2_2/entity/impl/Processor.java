@@ -11,7 +11,8 @@ public class Processor extends ComputerComponent {
         socket = "";
     }
 
-    public Processor(String name, String model, int cost, int price, String socket, double actFrequency) {
+    public Processor(String name, String model, int cost,
+                     int price, String socket, double actFrequency) {
         super(name, model, cost, price);
         this.socket = socket;
         this.actFrequency = actFrequency;
@@ -53,7 +54,9 @@ public class Processor extends ComputerComponent {
         if (Double.compare(processor.actFrequency, actFrequency) != 0) {
             return false;
         }
-        return socket != null ? socket.equals(processor.socket) : processor.socket == null;
+        return socket != null
+                ? socket.equals(processor.socket)
+                : processor.socket == null;
     }
 
     @Override

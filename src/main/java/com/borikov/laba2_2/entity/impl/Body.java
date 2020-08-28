@@ -12,7 +12,8 @@ public class Body extends ComputerComponent {
         type = "";
     }
 
-    public Body(String name, String model, int cost, int price, String material, String type) {
+    public Body(String name, String model, int cost, int price,
+                String material, String type) {
         super(name, model, cost, price);
         this.material = material;
         this.type = type;
@@ -44,14 +45,16 @@ public class Body extends ComputerComponent {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()){
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        if (!super.equals(o)){
+        if (!super.equals(o)) {
             return false;
         }
         Body body = (Body) o;
-        if (material != null ? !material.equals(body.material) : body.material != null){
+        if (material != null
+                ? !material.equals(body.material)
+                : body.material != null) {
             return false;
         }
         return type != null ? type.equals(body.type) : body.type == null;

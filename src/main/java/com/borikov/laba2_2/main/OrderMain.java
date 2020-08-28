@@ -12,7 +12,8 @@ public class OrderMain {
         graphicsCard.setVideoMemoryType("DDR4");
         graphicsCard.setVideoMemoryBus("160 bit");
         HardDisk hardDisk = new HardDisk("hard disk", "toshiba", 100, 150, 500);
-        MotherBoard motherBoard = new MotherBoard("mother board", "gigabyte", 200, 230, "LGA1151", "DDR4");
+        MotherBoard motherBoard = new MotherBoard("mother board", "gigabyte",
+                200, 230, "LGA1151", "DDR4");
         PowerSupply powerSupply = new PowerSupply();
         powerSupply.setModel("aeroCool");
         powerSupply.setCost(40);
@@ -24,7 +25,8 @@ public class OrderMain {
         processor.setPrice(200);
         processor.setSocket("DDR4");
         processor.setActFrequency(4.3);
-        RandomAccessMemory randomAccessMemory = new RandomAccessMemory("random access memory", "hyperX", 100, 160, 32, "DDR4");
+        RandomAccessMemory randomAccessMemory = new RandomAccessMemory(
+                "random access memory", "hyperX", 100, 160, 32, "DDR4");
         Order order = new Order();
         order.addComponent(body);
         order.addComponent(graphicsCard);

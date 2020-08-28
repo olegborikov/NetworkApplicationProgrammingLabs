@@ -20,7 +20,8 @@ public class Order implements PriceInterface {
         id = IdGenerator.generateId();
     }
 
-    public Order(long id, double cost, double price, List<ComputerComponent> computerComponents) {
+    public Order(long id, double cost, double price,
+                 List<ComputerComponent> computerComponents) {
         this.id = id;
         this.cost = cost;
         this.price = price;
@@ -81,7 +82,6 @@ public class Order implements PriceInterface {
         double commonPrice = 0;
         double commonCost = 0;
         Iterator<ComputerComponent> iterator = computerComponents.iterator();
-        ComputerComponent obj;
         while (iterator.hasNext()) {
             ComputerComponent computerComponent = iterator.next();
             commonCost = commonCost + computerComponent.getCost();
@@ -110,7 +110,9 @@ public class Order implements PriceInterface {
         if (Double.compare(order.price, price) != 0) {
             return false;
         }
-        return computerComponents != null ? computerComponents.equals(order.computerComponents) : order.computerComponents == null;
+        return computerComponents != null
+                ? computerComponents.equals(order.computerComponents)
+                : order.computerComponents == null;
     }
 
     @Override
@@ -122,7 +124,8 @@ public class Order implements PriceInterface {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(price);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (computerComponents != null ? computerComponents.hashCode() : 0);
+        result = 31 * result
+                + (computerComponents != null ? computerComponents.hashCode() : 0);
         return result;
     }
 
