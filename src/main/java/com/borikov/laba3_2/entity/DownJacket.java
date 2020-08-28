@@ -1,7 +1,6 @@
 package com.borikov.laba3_2.entity;
 
 public class DownJacket extends Jacket {
-
     public DownJacket(String manufacturer, double price,
                       String style, String seasonality, boolean isHood) {
         super(manufacturer, price, style, seasonality, isHood);

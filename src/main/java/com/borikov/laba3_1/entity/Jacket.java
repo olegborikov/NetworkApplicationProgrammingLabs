@@ -1,7 +1,7 @@
 package com.borikov.laba3_1.entity;
 
 public class Jacket extends Clothes {
-    private String Seasonality;
+    private String seasonality;
     private boolean isHood;
 
     public Jacket() {
@@ -14,16 +14,16 @@ public class Jacket extends Clothes {
     public Jacket(String manufacturer, double price,
                   String style, String seasonality, boolean isHood) {
         super(manufacturer, price, style);
-        Seasonality = seasonality;
+        this.seasonality = seasonality;
         this.isHood = isHood;
     }
 
     public String getSeasonality() {
-        return Seasonality;
+        return seasonality;
     }
 
     public void setSeasonality(String seasonality) {
-        Seasonality = seasonality;
+        this.seasonality = seasonality;
     }
 
     public boolean isHood() {
@@ -54,15 +54,15 @@ public class Jacket extends Clothes {
         if (isHood != jacket.isHood) {
             return false;
         }
-        return Seasonality != null
-                ? Seasonality.equals(jacket.Seasonality)
-                : jacket.Seasonality == null;
+        return seasonality != null
+                ? seasonality.equals(jacket.seasonality)
+                : jacket.seasonality == null;
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (Seasonality != null ? Seasonality.hashCode() : 0);
+        result = 31 * result + (seasonality != null ? seasonality.hashCode() : 0);
         result = 31 * result + (isHood ? 1 : 0);
         return result;
     }
@@ -70,7 +70,7 @@ public class Jacket extends Clothes {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Jacket{");
-        sb.append("Seasonality='").append(Seasonality).append('\'');
+        sb.append("seasonality='").append(seasonality).append('\'');
         sb.append(", isHood=").append(isHood);
         sb.append(", manufacturer='").append(manufacturer).append('\'');
         sb.append(", price=").append(price);

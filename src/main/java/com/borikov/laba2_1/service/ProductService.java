@@ -20,4 +20,7 @@ public class ProductService {
         }
         return generalStock;
     }
+
+    private ProductService() {
+    }
 }
