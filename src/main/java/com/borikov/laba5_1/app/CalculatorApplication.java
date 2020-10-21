@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -146,33 +147,44 @@ public class CalculatorApplication extends Application {
             inputField.setText("");
             outputLabel.setText("");
         });
-        buttonLeftBracket.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "("));
-        buttonRightBracket.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + ")"));
-        button1.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "1"));
-        button2.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "2"));
-        button3.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "3"));
-        button4.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "4"));
-        button5.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "5"));
-        button6.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "6"));
-        button7.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "7"));
-        button8.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "8"));
-        button9.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "9"));
-        button0.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "0"));
-        buttonDivide.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "/"));
-        buttonMultiply.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "*"));
-        buttonSum.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "+"));
-        buttonDifference.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "-"));
-        buttonEqually.setOnAction(actionEvent -> {
-            String line = String.valueOf(inputField.getCharacters());
-            Calculator calculator = Calculator.createCalculator();
-            String answer;
-            try {
-                answer = String.valueOf(calculator.calculate(line));
-            } catch (WrongArgumentException | NoSuchElementException e) {
-                answer = "error";
+        buttonLeftBracket.setOnAction(actionEvent -> addSymbolsAction("("));
+        buttonRightBracket.setOnAction(actionEvent -> addSymbolsAction(")"));
+        button1.setOnAction(actionEvent -> addSymbolsAction("1"));
+        button2.setOnAction(actionEvent -> addSymbolsAction("2"));
+        button3.setOnAction(actionEvent -> addSymbolsAction("3"));
+        button4.setOnAction(actionEvent -> addSymbolsAction("4"));
+        button5.setOnAction(actionEvent -> addSymbolsAction("5"));
+        button6.setOnAction(actionEvent -> addSymbolsAction("6"));
+        button7.setOnAction(actionEvent -> addSymbolsAction("7"));
+        button8.setOnAction(actionEvent -> addSymbolsAction("8"));
+        button9.setOnAction(actionEvent -> addSymbolsAction("9"));
+        button0.setOnAction(actionEvent -> addSymbolsAction("0"));
+        buttonDivide.setOnAction(actionEvent -> addSymbolsAction("/"));
+        buttonMultiply.setOnAction(actionEvent -> addSymbolsAction("*"));
+        buttonSum.setOnAction(actionEvent -> addSymbolsAction("+"));
+        buttonDifference.setOnAction(actionEvent -> addSymbolsAction("-"));
+        buttonEqually.setOnAction(actionEvent -> calculateAction());
+        inputField.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+                calculateAction();
             }
-            outputLabel.setText("  " + answer);
         });
         buttonDot.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "."));
+    }
+
+    private void calculateAction() {
+        String line = String.valueOf(inputField.getCharacters());
+        Calculator calculator = Calculator.createCalculator();
+        String answer;
+        try {
+            answer = String.valueOf(calculator.calculate(line));
+        } catch (WrongArgumentException | NoSuchElementException e) {
+            answer = "error";
+        }
+        outputLabel.setText("  " + answer);
+    }
+
+    private void addSymbolsAction(String symbols) {
+        inputField.setText(inputField.getCharacters() + symbols);
     }
 }
