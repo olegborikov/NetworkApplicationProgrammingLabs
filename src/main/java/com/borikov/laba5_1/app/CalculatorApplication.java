@@ -80,7 +80,6 @@ public class CalculatorApplication extends Application {
         buttonDifference = new Button("-");
         buttonEqually = new Button("=");
         buttonDot = new Button(".");
-
     }
 
     private void configureSize() {
@@ -138,7 +137,7 @@ public class CalculatorApplication extends Application {
 
     private void buttonsAddListeners() {
         buttonDelete.setOnAction(actionEvent -> {
-            String line = inputField.getCharacters().toString();
+            String line = String.valueOf(inputField.getCharacters());
             if (line.length() > 0) {
                 inputField.setText(line.substring(0, line.length() - 1));
             }
@@ -164,7 +163,7 @@ public class CalculatorApplication extends Application {
         buttonSum.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "+"));
         buttonDifference.setOnAction(actionEvent -> inputField.setText(inputField.getCharacters() + "-"));
         buttonEqually.setOnAction(actionEvent -> {
-            String line = inputField.getCharacters().toString();
+            String line = String.valueOf(inputField.getCharacters());
             Calculator calculator = Calculator.createCalculator();
             String answer;
             try {
