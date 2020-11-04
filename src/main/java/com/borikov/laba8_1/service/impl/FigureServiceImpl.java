@@ -62,7 +62,7 @@ public class FigureServiceImpl implements FigureService {
         }
         double sideParsed = Double.parseDouble(side);
         int accuracyParsed = Integer.parseInt(accuracy);
-        double cubeVolume = Math.pow(sideParsed, 3) * Math.sqrt(sideParsed) / 12;
+        double cubeVolume = Math.pow(sideParsed, 3) * Math.sqrt(2) / 12;
         return roundUpNumber(cubeVolume, accuracyParsed);
     }
 
@@ -74,9 +74,6 @@ public class FigureServiceImpl implements FigureService {
         }
         double radiusAParsed = Double.parseDouble(radiusA);
         double radiusBParsed = Double.parseDouble(radiusB);
-        if (radiusAParsed > radiusBParsed) {
-            throw new IncorrectDataException("Input data is incorrect");
-        }
         int accuracyParsed = Integer.parseInt(accuracy);
         double cubeVolume = 2 * Math.pow(Math.PI, 2) * Math.pow(radiusAParsed, 2) * radiusBParsed;
         return roundUpNumber(cubeVolume, accuracyParsed);

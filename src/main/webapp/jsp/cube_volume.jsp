@@ -7,7 +7,7 @@
 </head>
 <body>
 <p>
-    Вычисление объема шара:
+    Вычисление объема куба:
 </p>
 <form method="post" action="controller" autocomplete="off">
     <label>
