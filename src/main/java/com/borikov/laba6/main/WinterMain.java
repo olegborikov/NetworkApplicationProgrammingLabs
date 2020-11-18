@@ -1,10 +1,10 @@
 package com.borikov.laba6.main;
 
-import com.borikov.laba6.entity.WinterThread;
+import com.borikov.laba6.window.WinterWindow;
 
 public class WinterMain {
     public static void main(String[] args) {
-        WinterThread winterThread = new WinterThread();
-        winterThread.setVisible(true);
+        WinterWindow winterWindow = new WinterWindow();
+        winterWindow.setVisible(true);
     }
 }
