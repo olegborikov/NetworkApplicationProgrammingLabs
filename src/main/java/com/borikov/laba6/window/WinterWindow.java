@@ -6,7 +6,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class WinterWindow extends JFrame {
     private int cloudWidth = 1000;
@@ -35,7 +34,7 @@ public class WinterWindow extends JFrame {
     private Thread snowThread;
     private Thread snowFlakeThread;
 
-    private static final ReentrantLock lock = new ReentrantLock();
+    private volatile boolean isStopped = false;
 
     public WinterWindow() {
         snowThread = new Thread(new SnowThread());
@@ -71,9 +70,7 @@ public class WinterWindow extends JFrame {
         startButton.setForeground(Color.BLACK);
         startButton.addActionListener(actionEvent -> {
             if (snowThread.isAlive() && snowFlakeThread.isAlive()) {
-                if (lock.isLocked()) {
-                    lock.unlock();
-                }
+                isStopped = false;
             } else {
                 if (!snowThread.getState().equals(Thread.State.TERMINATED)
                         && !snowFlakeThread.getState().equals(Thread.State.TERMINATED)) {
@@ -88,9 +85,7 @@ public class WinterWindow extends JFrame {
         stopButton.setForeground(Color.BLACK);
         stopButton.addActionListener(actionEvent -> {
             if (snowThread.isAlive() && snowFlakeThread.isAlive()) {
-                if (!lock.isLocked()) {
-                    lock.lock();
-                }
+                isStopped = true;
             }
         });
         add(startButton);
@@ -129,7 +124,7 @@ public class WinterWindow extends JFrame {
         @Override
         public void run() {
             while (cloudHeight > 0) {
-                if (!lock.isLocked()) {
+                if (!isStopped) {
                     cloudHeight = cloudHeight - 2;
                     snowBankHeight = snowBankHeight + 4;
                     snowBankY = snowBankY - 4;
@@ -148,7 +143,7 @@ public class WinterWindow extends JFrame {
         @Override
         public void run() {
             while (cloudHeight > 0) {
-                if (!lock.isLocked()) {
+                if (!isStopped) {
                     snowflakeX = ThreadLocalRandom.current().nextInt(0, cloudWidth + 1);
                     snowflakeY = ThreadLocalRandom.current().nextInt(cloudHeight, snowBankY + 1);
                     snowflakeX1 = ThreadLocalRandom.current().nextInt(0, cloudWidth + 1);
