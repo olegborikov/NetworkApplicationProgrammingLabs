@@ -33,7 +33,6 @@ public class WinterWindow extends JFrame {
     private Image cloud;
     private Thread snowThread;
     private Thread snowFlakeThread;
-
     private volatile boolean isStopped = false;
 
     public WinterWindow() {
@@ -54,7 +53,7 @@ public class WinterWindow extends JFrame {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 try {
-                    background = ImageIO.read(new File("input/background.png"));
+                    background = ImageIO.read(new File("photo/background.png"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -95,9 +94,9 @@ public class WinterWindow extends JFrame {
                 setOpaque(false);
                 setPreferredSize(new Dimension(1000, 600));
                 try {
-                    cloud = ImageIO.read(new File("input/cloud.png"));
-                    snowdrift = ImageIO.read(new File("input/snowdrift.png"));
-                    snowflake = ImageIO.read(new File("input/snowflake.png"));
+                    cloud = ImageIO.read(new File("photo/cloud.png"));
+                    snowdrift = ImageIO.read(new File("photo/snowdrift.png"));
+                    snowflake = ImageIO.read(new File("photo/snowflake.png"));
                 } catch (IOException e) {
                     System.err.println("Error while reading images");
                 }
