@@ -21,7 +21,6 @@ public class ElectricalProductServiceImpl implements ElectricalProductService {
             if (ElectricalProductValidator.isNameCorrect(name) && ElectricalProductValidator.isPriceCorrect(price)
                     && ElectricalProductValidator.isQuantityCorrect(quantity)
                     && ElectricalProductValidator.isIssueYearCorrect(issueYear)) {
-                System.out.println(true);
                 double parsedPrice = Double.parseDouble(price);
                 int parsedQuantity = Integer.parseInt(quantity);
                 int parsedIssueYear = Integer.parseInt(issueYear);

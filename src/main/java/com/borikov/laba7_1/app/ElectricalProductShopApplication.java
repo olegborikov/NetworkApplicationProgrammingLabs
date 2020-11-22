@@ -85,7 +85,8 @@ public class ElectricalProductShopApplication extends Application {
 
     private List<String> makeRepresentation(List<ElectricalProduct> electricalProducts) {
         return electricalProducts.stream()
-                .map(e -> String.format(VIEW_TEMPLATE, e.getElectricalProductId(), e.getName(), e.getPrice(), e.getQuantity(), e.getIssueYear()))
+                .map(e -> String.format(VIEW_TEMPLATE, e.getElectricalProductId(),
+                        e.getName(), e.getPrice(), e.getQuantity(), e.getIssueYear()))
                 .collect(Collectors.toList());
     }
 
@@ -104,13 +105,16 @@ public class ElectricalProductShopApplication extends Application {
     private void addButtonAction() {
         Stage stage = new Stage();
         Button submitButton = new Button("Add");
-        TextField nameField = new TextField("dsad");
+        TextField nameField = new TextField();
         TextField priceField = new TextField();
         TextField quantityField = new TextField();
         TextField issueYearField = new TextField();
-        VBox root = new VBox(new Label("Name:"), nameField, new Label("Price:"),
-                priceField, new Label("Quantity:"), quantityField,
-                new Label("Issue year:"), issueYearField, submitButton);
+        Label nameLabel = new Label("Name:");
+        Label priceLabel = new Label("Price:");
+        Label quantityLabel = new Label("Quantity:");
+        Label issueYearLabel = new Label("Issue year:");
+        VBox root = new VBox(nameLabel, nameField, priceLabel, priceField, quantityLabel, quantityField,
+                issueYearLabel, issueYearField, submitButton);
         submitButton.setOnAction(actionEvent -> {
             String name = nameField.getText();
             String price = priceField.getText();
@@ -136,10 +140,14 @@ public class ElectricalProductShopApplication extends Application {
     private void editButtonAction() {
         String selectedString = listView.getSelectionModel().getSelectedItem();
         if (selectedString != null) {
-            String id = selectedString.substring(selectedString.indexOf("id: ") + 4, selectedString.indexOf(", name:"));
-            String name = selectedString.substring(selectedString.indexOf(", name: ") + 8, selectedString.indexOf(", price:"));
-            String price = selectedString.substring(selectedString.indexOf(", price: ") + 9, selectedString.indexOf(", quantity:"));
-            String quantity = selectedString.substring(selectedString.indexOf(", quantity: ") + 12, selectedString.indexOf(", issue year:"));
+            String id = selectedString.substring(selectedString.indexOf("id: ")
+                    + 4, selectedString.indexOf(", name:"));
+            String name = selectedString.substring(selectedString.indexOf(", name: ")
+                    + 8, selectedString.indexOf(", price:"));
+            String price = selectedString.substring(selectedString.indexOf(", price: ")
+                    + 9, selectedString.indexOf(", quantity:"));
+            String quantity = selectedString.substring(selectedString.indexOf(", quantity: ")
+                    + 12, selectedString.indexOf(", issue year:"));
             String issueYear = selectedString.substring(selectedString.indexOf(", issue year: ") + 14);
             Stage stage = new Stage();
             Button editButton = new Button("Edit");
@@ -151,9 +159,12 @@ public class ElectricalProductShopApplication extends Application {
             quantityField.setText(quantity);
             TextField issueYearField = new TextField();
             issueYearField.setText(issueYear);
-            VBox root = new VBox(new Label("Name:"), nameField, new Label("Price:"),
-                    priceField, new Label("Quantity:"), quantityField,
-                    new Label("Issue year:"), issueYearField, editButton);
+            Label nameLabel = new Label("Name:");
+            Label priceLabel = new Label("Price:");
+            Label quantityLabel = new Label("Quantity:");
+            Label issueYearLabel = new Label("Issue year:");
+            VBox root = new VBox(nameLabel, nameField, priceLabel, priceField, quantityLabel, quantityField,
+                    issueYearLabel, issueYearField, editButton);
             editButton.setOnAction(actionEvent -> {
                 String inputName = nameField.getText();
                 String inputPrice = priceField.getText();
@@ -188,6 +199,5 @@ public class ElectricalProductShopApplication extends Application {
                 System.err.println(e);
             }
         }
-
     }
 }
