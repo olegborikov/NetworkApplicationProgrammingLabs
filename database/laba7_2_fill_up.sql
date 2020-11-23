@@ -1,3 +1,4 @@
+USE `laba7_2`;
 INSERT INTO users(name, surname, patronymic, birthday)
 VALUES ('Oleg', 'Borikov', 'Viktorovich', '11111111111111');
 INSERT INTO users(name, surname, patronymic, birthday)

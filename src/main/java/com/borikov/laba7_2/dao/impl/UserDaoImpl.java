@@ -92,7 +92,7 @@ public class UserDaoImpl implements UserDao {
             }
             return users;
         } catch (SQLException e) {
-            throw new DaoException("Error while finding users by letter theme фиыутсу", e);
+            throw new DaoException("Error while finding users by letter theme absence", e);
         }
     }
 

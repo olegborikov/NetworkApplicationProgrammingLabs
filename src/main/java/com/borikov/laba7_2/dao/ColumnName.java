@@ -14,6 +14,8 @@ public class ColumnName {
     public static final String PATRONYMIC = "patronymic";
     public static final String BIRTHDAY = "birthday";
 
+    public static final String ROWCOUNT = "rowcount";
+
     private ColumnName() {
     }
 }

@@ -9,7 +9,6 @@ import com.borikov.laba7_2.service.LetterService;
 import com.borikov.laba7_2.validator.LetterValidator;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class LetterServiceImpl implements LetterService {
     private final LetterDao letterDao = LetterDaoImpl.getInstance();
@@ -22,8 +21,7 @@ public class LetterServiceImpl implements LetterService {
                     && LetterValidator.isIdCorrect(senderId) && LetterValidator.isIdCorrect(receiverId)) {
                 long senderIdParsed = Long.parseLong(senderId);
                 long receiverIdParsed = Long.parseLong(receiverId);
-                Letter letter = new Letter(null, theme, text,
-                        LocalDate.now(), senderIdParsed, receiverIdParsed);
+                Letter letter = new Letter(null, theme, text, LocalDate.now(), senderIdParsed, receiverIdParsed);
                 isLetterSent = letterDao.add(letter);
             }
         } catch (DaoException e) {
@@ -33,9 +31,18 @@ public class LetterServiceImpl implements LetterService {
     }
 
     @Override
-    public List<Letter> findAllLetters() throws ServiceException {
+    public int findAmountOfSentLettersByUserId(Long userId) throws ServiceException {
         try {
-            return letterDao.findAll();
+            return letterDao.findAmountOfSentByUserId(userId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public int findAmountOfReceivedLettersByUserId(Long userId) throws ServiceException {
+        try {
+            return letterDao.findAmountOfReceivedByUserId(userId);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

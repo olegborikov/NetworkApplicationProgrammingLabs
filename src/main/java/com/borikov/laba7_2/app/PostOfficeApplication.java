@@ -1,6 +1,5 @@
 package com.borikov.laba7_2.app;
 
-import com.borikov.laba7_2.entity.Letter;
 import com.borikov.laba7_2.entity.User;
 import com.borikov.laba7_2.exception.ServiceException;
 import com.borikov.laba7_2.service.LetterService;
@@ -27,10 +26,11 @@ import java.util.stream.Collectors;
 
 public class PostOfficeApplication extends Application {
     private static final String USER_TEMPLATE = "id: %d, name: %s, surname: %s, patronymic: %s, birthday: %s";
-    private static final String LETTER_TEMPLATE = "id: %d, theme: %s, text: %s, departure date: %s, sender id: %d, receiver id: %s";
+    private static final String USER_LETTER_TEMPLATE = "id: %d, name: %s, surname: %s, patronymic: %s, birthday: %s, "
+            + "amount of sent letters: %d,  amount of received letters: %d";
     private final Logger LOGGER = LogManager.getLogger();
-    private static UserService userService = new UserServiceImpl();
-    private static LetterService letterService = new LetterServiceImpl();
+    private final UserService userService = new UserServiceImpl();
+    private final LetterService letterService = new LetterServiceImpl();
     private Button button1;
     private Button button2;
     private Button button3;
@@ -55,8 +55,8 @@ public class PostOfficeApplication extends Application {
 
     private void componentsInit() {
         button1 = new Button("Пользователь, длина писем которого наименьшая");
-        button2 = new Button("Информацию о пользователях, а также их письмах");
-        button3 = new Button("Информацию о пользователях, которые получили письмо с заданной темой");
+        button2 = new Button("Информация о пользователях и количестве их писем");
+        button3 = new Button("Информация о пользователях, которые получили письмо с заданной темой");
         button4 = new Button("Информацию о пользователях, которые не получали письмо с заданной темой");
         button5 = new Button("Отправить письмо заданного человека с заданной темой всем адресатам");
         themeLabel = new Label("Заданная тема:");
@@ -103,20 +103,14 @@ public class PostOfficeApplication extends Application {
     private void button2Action() {
         try {
             List<User> users = userService.findAllUsers();
-            List<Letter> letters = letterService.findAllLetters();
             ObservableList<String> userObservableList =
-                    FXCollections.observableArrayList(makeRepresentationUser(users));
+                    FXCollections.observableArrayList(makeRepresentationUserWithLetter(users));
             ListView<String> listViewUser = new ListView<>(userObservableList);
-            ObservableList<String> letterObservableList =
-                    FXCollections.observableArrayList(makeRepresentationLetter(letters));
-            ListView<String> listViewLetter = new ListView<>(letterObservableList);
             Stage stage = new Stage();
-            Label usersLabel = new Label("Users");
-            Label lettersLabel = new Label("Letters");
-            VBox root = new VBox(usersLabel, listViewUser, lettersLabel, listViewLetter);
+            VBox root = new VBox(listViewUser);
             Scene scene = new Scene(root);
-            stage.setWidth(500);
-            stage.setHeight(400);
+            stage.setWidth(800);
+            stage.setHeight(300);
             stage.setResizable(false);
             stage.show();
             stage.setScene(scene);
@@ -210,10 +204,21 @@ public class PostOfficeApplication extends Application {
                 .collect(Collectors.toList());
     }
 
-    private List<String> makeRepresentationLetter(List<Letter> electricalProducts) {
+    private List<String> makeRepresentationUserWithLetter(List<User> electricalProducts) {
         return electricalProducts.stream()
-                .map(l -> String.format(LETTER_TEMPLATE, l.getLetterId(),
-                        l.getTheme(), l.getText(), l.getDepartureDate(), l.getSenderId(), l.getReceiverId()))
+                .map(u -> {
+                    String representation;
+                    try {
+                        representation = String.format(USER_LETTER_TEMPLATE, u.getUserId(), u.getName(), u.getSurname(),
+                                u.getPatronymic(), u.getBirthday(),
+                                letterService.findAmountOfSentLettersByUserId(u.getUserId()),
+                                letterService.findAmountOfReceivedLettersByUserId(u.getUserId()));
+                    } catch (ServiceException e) {
+                        representation = "";
+                        LOGGER.log(Level.ERROR, "Error while finding letters by id", e);
+                    }
+                    return representation;
+                })
                 .collect(Collectors.toList());
     }
 }

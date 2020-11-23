@@ -83,13 +83,6 @@ public class ElectricalProductShopApplication extends Application {
         });
     }
 
-    private List<String> makeRepresentation(List<ElectricalProduct> electricalProducts) {
-        return electricalProducts.stream()
-                .map(e -> String.format(VIEW_TEMPLATE, e.getElectricalProductId(),
-                        e.getName(), e.getPrice(), e.getQuantity(), e.getIssueYear()))
-                .collect(Collectors.toList());
-    }
-
     private void showButtonAction() {
         List<ElectricalProduct> electricalProducts = new ArrayList<>();
         try {
@@ -199,5 +192,12 @@ public class ElectricalProductShopApplication extends Application {
                 System.err.println(e);
             }
         }
+    }
+
+    private List<String> makeRepresentation(List<ElectricalProduct> electricalProducts) {
+        return electricalProducts.stream()
+                .map(p -> String.format(VIEW_TEMPLATE, p.getElectricalProductId(),
+                        p.getName(), p.getPrice(), p.getQuantity(), p.getIssueYear()))
+                .collect(Collectors.toList());
     }
 }

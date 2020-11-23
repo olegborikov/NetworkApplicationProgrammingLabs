@@ -5,6 +5,9 @@ public class LetterValidator {
     private static final String THEME_REGEX = "^.{1,40}$";
     private static final String TEXT_REGEX = "^.{1,256}$";
 
+    private LetterValidator() {
+    }
+
     public static boolean isIdCorrect(String id) {
         return isStringCorrect(id, ID_REGEX);
     }

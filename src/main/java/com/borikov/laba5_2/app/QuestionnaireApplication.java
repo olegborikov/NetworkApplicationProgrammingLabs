@@ -105,11 +105,11 @@ public class QuestionnaireApplication extends Application {
             String name = String.valueOf(nameField.getCharacters());
             String surname = String.valueOf(surnameField.getCharacters());
             RadioButton currentRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
-            if(currentRadioButton != null){
+            if (currentRadioButton != null) {
                 String age = currentRadioButton.getText();
                 String city = listView.getSelectionModel().getSelectedItem();
                 QuestionnaireService questionnaireService = new QuestionnaireService();
-                if(questionnaireService.saveQuestionnaire(name, surname, age, city)){
+                if (questionnaireService.saveQuestionnaire(name, surname, age, city)) {
                     text = new Text("Successfully");
                 }
             }
